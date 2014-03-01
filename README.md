@@ -2,7 +2,7 @@ Geographic coordinate utilities using WGS84 datum
 
 Installation
 -------------
-    $ npm install WGS84Util
+    $ npm install wgs84-util
 
 Running Tests
 --------------
