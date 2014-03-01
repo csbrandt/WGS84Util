@@ -1,4 +1,4 @@
-**Author:** cs_brandt
+Geographic coordinate utilities using WGS84 datum
 
 distanceBetween(coordA, coordB)
 -------------------------------
