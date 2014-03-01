@@ -1,5 +1,5 @@
 {
-  "name": "WGS84Coord",
+  "name": "WGS84Util",
   "version": "0.0.1",
   "description": "Geographic coordinate utilities using WGS84 datum",
   "main": "index.js",
