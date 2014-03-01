@@ -1,5 +1,15 @@
 Geographic coordinate utilities using WGS84 datum
 
+Running Tests
+--------------
+Install the development dependencies:
+
+    $ npm install
+
+Then run the tests:
+
+    $ make test
+
 distanceBetween(coordA, coordB)
 -------------------------------
 From: Haversine formula - RW Sinnott, "Virtues of the Haversine",
