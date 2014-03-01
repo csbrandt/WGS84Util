@@ -4,7 +4,7 @@
  */
 
 
-/** @namespace */
+/** @module wgs84-util */
 var WGS84Util = exports;
 
 // Semi-Major Axis (Equatorial Radius)
