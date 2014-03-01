@@ -1,6 +1,6 @@
 {
   "name": "wgs84-util",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Geographic coordinate utilities using WGS84 datum",
   "main": "index.js",
   "repository": {
@@ -11,6 +11,11 @@
   },
   "author": "csbrandt",
   "license": "MIT",
+  "keywords": [
+    "wgs84",
+    "geodesy",
+    "ellipsoid"
+  ],
   "devDependencies": {
     "mocha": "~1.17.1"
   }
