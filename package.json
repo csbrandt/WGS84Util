@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Geographic coordinate utilities using WGS84 datum",
   "main": "index.js",
+  "repository": {
+    "url": "https://github.com/csbrandt/WGS84Util.git"
+  },
   "scripts": {
     "test": "make test"
   },
