@@ -22,6 +22,26 @@ Methods
 > **Returns**
 
 > *number*,  the distance from this point to the supplied point, in km
+    destinationPoint(coordA, bearing, dist)
+> Returns the destination point from this point having travelled the given distance (in m) on the 
+> given initial bearing (bearing may vary before destination is reached)
+> see http://williams.best.vwh.net/avform.htm#LL
+
+
+> **Parameters**
+
+> **coordA**:  *object*, initial point
+
+
+> **bearing**:  *object*,  angular bearing from the supplied point, in degrees
+
+> **dist**:  *object*, the distance from the supplied point, in m 
+
+
+> **Returns**
+
+> *object*,  the destination point
+
 
     degToRad(deg)
 > Conversion from degrees to radians.
