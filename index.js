@@ -37,6 +37,36 @@ WGS84Util.distanceBetween = function(coordA, coordB) {
 };
 
 /**
+ * Returns the destination point from this point having travelled the given distance (in m) on the 
+ * given initial bearing (bearing may vary before destination is reached)
+ *
+ *   see http://williams.best.vwh.net/avform.htm#LL
+ *
+ * @param   {object} coordA
+ * @param   {Number} brng: Initial bearing in degrees
+ * @param   {Number} dist: Distance in m
+ *
+ * @returns {LatLon} Destination point
+ */
+WGS84Util.destinationPoint = function(coordA, brng, dist) {
+  dist = typeof(dist) == 'number' ? dist : typeof(dist) == 'string' && dist.trim() != '' ? +dist : NaN;
+  dist = dist / SEMI_MAJOR_AXIS;  // convert dist to angular distance in radians
+  brng = this.degToRad(brng);  // 
+  var lat1 = this.degToRad(coordA.latitude), lon1 = this.degToRad(coordA.longitude);
+
+  var lat2 = Math.asin( Math.sin(lat1) * Math.cos(dist) + 
+                        Math.cos(lat1) * Math.sin(dist) * Math.cos(brng) );
+  var lon2 = lon1 + Math.atan2(Math.sin(brng) * Math.sin(dist) * Math.cos(lat1), 
+                               Math.cos(dist) - Math.sin(lat1) * Math.sin(lat2));
+  lon2 = (lon2 + 3 * Math.PI) % (2 * Math.PI) - Math.PI;  // normalise to -180..+180º
+
+  return {
+    latitude: this.radToDeg(lat2).toFixed(10),
+    longitude: this.radToDeg(lon2).toFixed(10)
+  };
+};
+
+/**
  * Conversion from degrees to radians.
  *
  * @param {number} deg the angle in degrees.

@@ -76,6 +76,22 @@ describe('WGS84Coord', function()
 
 	it('distanceBetween({latitude: 40, longitude: -70}, {latitude: 40.7419, longitude: -73.9930}) should return 348.5387223209787 km', function() {
 		assert.equal(WGS84Util.distanceBetween({latitude: 40, longitude: -70}, {latitude: 40.7419, longitude: -73.9930}) / 1000, 348.5387223209787);
-	});	
+	});
+
+   // SFO
+	it('destinationPoint({latitude: 37.6194847, longitude: -122.3738936}, 45.333333333333336, 59200) should return {latitude: 37.9923622446, longitude: -121.8939734865}', function() {
+		var destCoordinate = WGS84Util.destinationPoint({latitude: 37.6194847, longitude: -122.3738936}, 45.333333333333336, 59200);
+
+		assert.equal(destCoordinate.latitude, 37.9923622446);
+		assert.equal(destCoordinate.longitude, -121.8939734865);
+	});
+
+	// Sydney, Australia
+	it('destinationPoint({latitude: -33.98642995, longitude: 151.00031839}, 0, 59200) should return {latitude: -33.4546273018, longitude: 151.0003183900}', function() {
+		var destCoordinate = WGS84Util.destinationPoint({latitude: -33.98642995, longitude: 151.00031839}, 0, 59200);
+
+		assert.equal(destCoordinate.latitude, -33.4546273018);
+		assert.equal(destCoordinate.longitude, 151.0003183900);
+	});
 
 });

@@ -1,6 +1,6 @@
 {
   "name": "wgs84-util",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Geographic coordinate utilities using WGS84 datum",
   "main": "index.js",
   "repository": {
