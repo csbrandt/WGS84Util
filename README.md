@@ -22,6 +22,7 @@ Methods
 > **Returns**
 
 > *number*,  the distance from this point to the supplied point, in km
+
     destinationPoint(coordA, bearing, dist)
 > Returns the destination point from this point having travelled the given distance (in m) on the 
 > given initial bearing (bearing may vary before destination is reached)
