@@ -34,9 +34,9 @@ Methods
 > **coordA**:  *object*, initial point
 
 
-> **bearing**:  *object*,  angular bearing from the supplied point, in degrees
+> **bearing**:  *number*,  angular bearing from the supplied point, in degrees
 
-> **dist**:  *object*, the distance from the supplied point, in m 
+> **dist**:  *number*, the distance from the supplied point, in m 
 
 
 > **Returns**
