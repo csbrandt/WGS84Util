@@ -31,17 +31,17 @@ Methods
 
 > **Parameters**
 
-> **coordA**:  *object*, initial point
+> **coordA**:  *object*, GeoJSON point
 
 
-> **bearing**:  *number*,  angular bearing from the supplied point, in degrees
+> **bearing**:  *number*,  initial bearing in degrees
 
 > **dist**:  *number*, the distance from the supplied point, in m 
 
 
 > **Returns**
 
-> *object*,  the destination point
+> *object*,  GeoJSON destination point
 
 
     degToRad(deg)
