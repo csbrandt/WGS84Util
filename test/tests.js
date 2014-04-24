@@ -79,19 +79,19 @@ describe('WGS84Coord', function()
 	});
 
    // SFO
-	it('destinationPoint({latitude: 37.6194847, longitude: -122.3738936}, 45.333333333333336, 59200) should return {latitude: 37.9923622446, longitude: -121.8939734865}', function() {
-		var destCoordinate = WGS84Util.destinationPoint({latitude: 37.6194847, longitude: -122.3738936}, 45.333333333333336, 59200);
+	it('destinationPoint({"type": "Point", "coordinates": [37.6194847, -122.3738936]}, 45.333333333333336, 59200) should return {"type": "Point", "coordinates": [37.9923622446, -121.8939734865]}', function() {
+		var destCoordinate = WGS84Util.destinationPoint({"type": "Point", "coordinates": [37.6194847, -122.3738936]}, 45.333333333333336, 59200);
 
-		assert.equal(destCoordinate.latitude, 37.9923622446);
-		assert.equal(destCoordinate.longitude, -121.8939734865);
+		assert.equal(destCoordinate.coordinates[0], 37.9923622446);
+		assert.equal(destCoordinate.coordinates[1], -121.8939734865);
 	});
 
 	// Sydney, Australia
-	it('destinationPoint({latitude: -33.98642995, longitude: 151.00031839}, 0, 59200) should return {latitude: -33.4546273018, longitude: 151.0003183900}', function() {
-		var destCoordinate = WGS84Util.destinationPoint({latitude: -33.98642995, longitude: 151.00031839}, 0, 59200);
+	it('destinationPoint({"type": "Point", "coordinates": [-33.98642995, 151.00031839]}, 0, 59200) should return {"type": "Point", "coordinates": [-33.4546273018, 151.0003183900]}', function() {
+		var destCoordinate = WGS84Util.destinationPoint({"type": "Point", "coordinates": [-33.98642995, 151.00031839]}, 0, 59200);
 
-		assert.equal(destCoordinate.latitude, -33.4546273018);
-		assert.equal(destCoordinate.longitude, 151.0003183900);
+		assert.equal(destCoordinate.coordinates[0], -33.4546273018);
+		assert.equal(destCoordinate.coordinates[1], 151.0003183900);
 	});
 
 });

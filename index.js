@@ -42,17 +42,17 @@ WGS84Util.distanceBetween = function(coordA, coordB) {
  *
  *   see http://williams.best.vwh.net/avform.htm#LL
  *
- * @param   {object} coordA
+ * @param   {object} coordA GeoJSON point
  * @param   {Number} brng: Initial bearing in degrees
  * @param   {Number} dist: Distance in m
  *
- * @returns {LatLon} Destination point
+ * @returns {object} GeoJSON destination point
  */
 WGS84Util.destinationPoint = function(coordA, brng, dist) {
   dist = typeof(dist) == 'number' ? dist : typeof(dist) == 'string' && dist.trim() != '' ? +dist : NaN;
   dist = dist / SEMI_MAJOR_AXIS;  // convert dist to angular distance in radians
   brng = this.degToRad(brng);  // 
-  var lat1 = this.degToRad(coordA.latitude), lon1 = this.degToRad(coordA.longitude);
+  var lat1 = this.degToRad(coordA.coordinates[0]), lon1 = this.degToRad(coordA.coordinates[1]);
 
   var lat2 = Math.asin( Math.sin(lat1) * Math.cos(dist) + 
                         Math.cos(lat1) * Math.sin(dist) * Math.cos(brng) );
@@ -61,8 +61,8 @@ WGS84Util.destinationPoint = function(coordA, brng, dist) {
   lon2 = (lon2 + 3 * Math.PI) % (2 * Math.PI) - Math.PI;  // normalise to -180..+180º
 
   return {
-    latitude: this.radToDeg(lat2).toFixed(10),
-    longitude: this.radToDeg(lon2).toFixed(10)
+    "type": "Point",
+    "coordinates": [this.radToDeg(lat2).toFixed(10), this.radToDeg(lon2).toFixed(10)]
   };
 };
 
