@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/wgs84-util.png?downloads=true&stars=true)](https://nodei.co/npm/wgs84-util/)
+
 Geographic coordinate utilities using WGS84 datum
 
 Installation
@@ -13,10 +15,10 @@ Methods
 
 > **Parameters**
 
-> **coordA**:  *object*,  
+> **coordA**:  *object*,  GeoJSON point
 
 
-> **coordB**:  *object*,  
+> **coordB**:  *object*,  GeoJSON point
 
 
 > **Returns**
@@ -78,11 +80,11 @@ Methods
 > accuracy property in digits. Returns null if the conversion failed.
 
 > **Parameters**
-> **ll**:  *object*,  Object literal with lat and lon properties
+> **ll**:  *object*,  GeoJSON object with latitude and longitude properties
 
 > **Returns**
 
-> *object*,  Object literal containing the UTM value with easting,
+> *object*,  GeoJSON feature containing the UTM value with easting and northing  
 
     UTMtoLL(utm)
 > Converts UTM coords to lat/long, using the WGS84 ellipsoid. This is a convenience
@@ -99,11 +101,11 @@ Methods
 
 > **Parameters**
 
-> **utm**:  *object*,  An object literal with northing, easting, zoneNumber
+> **utm**:  *object*,  GeoJSON object with easting, northing, zoneNumber
 
 > **Returns**
 
-> *object*,  An object literal containing either lat and lon values
+> *object*,  GeoJSON object containing value with latitude and longitude
 
 
 Running Tests
@@ -115,6 +117,20 @@ Install the development dependencies:
 Then run the tests:
 
     $ npm test
+
+Code Coverage 
+--------------
+Install the development dependencies:
+
+    $ npm install
+
+Then run coverage
+
+    $ npm run coverage
+
+View coverage reports
+
+    $ firefox coverage/lcov-report/index.html
 
 
 ## License

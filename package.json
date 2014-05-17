@@ -1,13 +1,14 @@
 {
   "name": "wgs84-util",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Geographic coordinate utilities using WGS84 datum",
   "main": "index.js",
   "repository": {
     "url": "https://github.com/csbrandt/WGS84Util.git"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "coverage": "istanbul cover _mocha test --recursive -- -u      exports -R spec"
   },
   "author": "csbrandt",
   "license": "MIT",
@@ -15,9 +16,11 @@
     "wgs84",
     "geodesy",
     "ellipsoid",
-    "UTM"
+    "UTM",
+    "GeoJSON"
   ],
   "devDependencies": {
-    "mocha": "~1.17.1"
+    "mocha": "~1.17.1",
+    "istanbul": "~0.2.10"
   }
 }

@@ -23,8 +23,8 @@ var ECC_SQUARED = 0.006694380004260827;
  *
  */
 WGS84Util.distanceBetween = function(coordA, coordB) {  
-  var lat1 = this.degToRad(coordA.latitude), lon1 = this.degToRad(coordA.longitude);
-  var lat2 = this.degToRad(coordB.latitude), lon2 = this.degToRad(coordB.longitude);
+  var lat1 = this.degToRad(coordA.coordinates[0]), lon1 = this.degToRad(coordA.coordinates[1]);
+  var lat2 = this.degToRad(coordB.coordinates[0]), lon2 = this.degToRad(coordB.coordinates[1]);
   var dLat = lat2 - lat1;
   var dLon = lon2 - lon1;
 
@@ -97,8 +97,8 @@ WGS84Util.radToDeg = function(rad) {
  *     accuracy property in digits. Returns null if the conversion failed.
  */
 WGS84Util.LLtoUTM = function(ll) {
-    var Lat = ll.latitude;
-    var Long = ll.longitude;
+    var Lat = ll.coordinates[0];
+    var Long = ll.coordinates[1];
     var k0 = 0.9996;
     var LongOrigin;
     var eccPrimeSquared;
@@ -107,6 +107,7 @@ WGS84Util.LLtoUTM = function(ll) {
     var LongRad = this.degToRad(Long);
     var LongOriginRad;
     var ZoneNumber;
+    var zoneLetter = 'N';
     // (int)
     ZoneNumber = Math.floor((Long + 180) / 6) + 1;
 
@@ -150,16 +151,14 @@ WGS84Util.LLtoUTM = function(ll) {
     var UTMEasting = (k0 * N * (A + (1 - T + C) * A * A * A / 6.0 + (5 - 18 * T + T * T + 72 * C - 58 * eccPrimeSquared) * A * A * A * A * A / 120.0) + 500000.0);
 
     var UTMNorthing = (k0 * (M + N * Math.tan(LatRad) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A * A * A * A / 24.0 + (61 - 58 * T + T * T + 600 * C - 330 * eccPrimeSquared) * A * A * A * A * A * A / 720.0)));
+    
     if (Lat < 0.0) {
         UTMNorthing += 10000000.0; //10000000 meter offset for
         // southern hemisphere
+        zoneLetter = 'S';
     }
 
-    return {
-        easting: UTMEasting.toFixed(1),
-        northing: UTMNorthing.toFixed(1),
-        gridZone: ZoneNumber
-    };
+    return {"type": "Feature", "geometry": {"type": "Point", "coordinates": [UTMEasting.toFixed(1), UTMNorthing.toFixed(1)]}, "properties": {"zoneLetter": zoneLetter, "zoneNumber": ZoneNumber}};
 };
 
 /**
@@ -177,10 +176,10 @@ WGS84Util.LLtoUTM = function(ll) {
  *     Returns null if the conversion failed.
  */
 WGS84Util.UTMtoLL = function(utm) {
-    var UTMNorthing = utm.northing;
-    var UTMEasting = utm.easting;
-    var zoneLetter = utm.zoneLetter;
-    var zoneNumber = utm.zoneNumber;
+    var UTMNorthing = utm.geometry.coordinates[1];
+    var UTMEasting = utm.geometry.coordinates[0];
+    var zoneLetter = utm.properties.zoneLetter;
+    var zoneNumber = utm.properties.zoneNumber;
     // check the ZoneNummber is valid
     if (zoneNumber < 0 || zoneNumber > 60) {
         return null;
@@ -229,7 +228,7 @@ WGS84Util.UTMtoLL = function(utm) {
     var lon = (D - (1 + 2 * T1 + C1) * D * D * D / 6 + (5 - 2 * C1 + 28 * T1 - 3 * C1 * C1 + 8 * eccPrimeSquared + 24 * T1 * T1) * D * D * D * D * D / 120) / Math.cos(phi1Rad);
     lon = LongOrigin + this.radToDeg(lon);
 
-    var result;
+    var result = { "type": "Point", "coordinates": [] };
     if (utm.accuracy) {
         var topRight = this.UTMtoLL({
             northing: utm.northing + utm.accuracy,
@@ -244,10 +243,8 @@ WGS84Util.UTMtoLL = function(utm) {
             left: lon
         };
     } else {
-        result = {};
-
-        result.latitude = lat.toFixed(8);
-        result.longitude = lon.toFixed(8);
+        result.coordinates[0] = lat.toFixed(8);
+        result.coordinates[1] = lon.toFixed(8);
     }
 
     return result;

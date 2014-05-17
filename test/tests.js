@@ -13,69 +13,63 @@ describe('WGS84Coord', function()
 	});
 
    // SFO
-	it('LLtoUTM({latitude: 37.6194847, longitude: -122.3738936}) should return 10N 555253.6E 4163781.7N', function() {
-		var latlng = {
-			latitude: 37.6194847,
-			longitude: -122.3738936
-		};
+	it('LLtoUTM({"type": "Point", "coordinates": [37.6194847, -122.3738936]}) should return 10N 555253.6E 4163781.7N', function() {
+		var latlng = {"type": "Point", "coordinates": [37.6194847, -122.3738936]};
 
 		var utm = WGS84Util.LLtoUTM(latlng);
 
-		assert.equal(utm.easting, 555253.6);
-		assert.equal(utm.northing, 4163781.7);
-		assert.equal(utm.gridZone, 10);
+		assert.equal(utm.geometry.coordinates[0], 555253.6);
+		assert.equal(utm.geometry.coordinates[1], 4163781.7);
+		assert.equal(utm.properties.zoneLetter, 'N');
+		assert.equal(utm.properties.zoneNumber, 10);
 		
 	});
 
    // Sydney, Australia
-	it('LLtoUTM({latitude: -34, longitude: 151}) should return 56S 315290.2E 6236040.9N', function() {
-		var latlng = {
-			latitude: -34,
-			longitude: 151
-		};
+	it('LLtoUTM({"type": "Point", "coordinates": [-34, 151]}) should return 56S 315290.2E 6236040.9N', function() {
+		var latlng = {"type": "Point", "coordinates": [-34, 151]};
 
 		var utm = WGS84Util.LLtoUTM(latlng);
 
-		assert.equal(utm.easting, 315290.2);
-		assert.equal(utm.northing, 6236040.9);
-		assert.equal(utm.gridZone, 56);
+		assert.equal(utm.geometry.coordinates[0], 315290.2);
+		assert.equal(utm.geometry.coordinates[1], 6236040.9);
+		assert.equal(utm.properties.zoneLetter, 'S');
+		assert.equal(utm.properties.zoneNumber, 56);
 		
 	});
 
    // SFO
-	it('UTMtoLL({easting: 555253.6, northing: 4163781.7, zoneLetter: N, zoneNumber: 10}) should return {latitude: 37.61948461, longitude: -122.37389327}', function() {
-		var utm = {
-			easting: 555253.6,
-			northing: 4163781.7,
-			zoneLetter: 'N',
-			zoneNumber: 10
-		};
+	it('UTMtoLL({"type": "Feature", "geometry": {"type": "Point", "coordinates": [555253.6, 4163781.7]}, "properties": {"zoneLetter": "N", "zoneNumber": 10}})\n should return {"type": "Point", "coordinates": [37.61948461, -122.37389327]}', function() {
+		var utm = { 
+			"type": "Feature",
+         "geometry": {"type": "Point", "coordinates": [555253.6, 4163781.7]},
+         "properties": {"zoneLetter": 'N', "zoneNumber": 10}
+      };
 
 		var latlng = WGS84Util.UTMtoLL(utm);
 
-		assert.equal(latlng.latitude, 37.61948461);
-		assert.equal(latlng.longitude, -122.37389327);
+		assert.equal(latlng.coordinates[0], 37.61948461);
+		assert.equal(latlng.coordinates[1], -122.37389327);
 
 	});
 
    // Sydney, Australia
-	it('UTMtoLL({easting: 315290.2, northing: 6237546.4, zoneLetter: S, zoneNumber: 56}) should return {latitude: -33.98642995, longitude: 151.00031839}', function() {
-		var utm = {
-			easting: 315290.2,
-			northing: 6237546.4,
-			zoneLetter: 'S',
-			zoneNumber: 56
-		};
+	it('UTMtoLL({"type": "Feature", "geometry": {"type": "Point", "coordinates": [315290.2, 6237546.4]}, "properties": {"zoneLetter": "S", "zoneNumber": 56}})\n should return {"type": "Point", "coordinates": [-33.98642995, 151.00031839]}', function() {
+		var utm = { 
+			"type": "Feature",
+         "geometry": {"type": "Point", "coordinates": [315290.2, 6237546.4]},
+         "properties": {"zoneLetter": 'S', "zoneNumber": 56}
+      };
 
 		var latlng = WGS84Util.UTMtoLL(utm);
 
-		assert.equal(latlng.latitude, -33.98642995);
-		assert.equal(latlng.longitude, 151.00031839);
+		assert.equal(latlng.coordinates[0], -33.98642995);
+		assert.equal(latlng.coordinates[1], 151.00031839);
 
 	});	
 
-	it('distanceBetween({latitude: 40, longitude: -70}, {latitude: 40.7419, longitude: -73.9930}) should return 348.5387223209787 km', function() {
-		assert.equal(WGS84Util.distanceBetween({latitude: 40, longitude: -70}, {latitude: 40.7419, longitude: -73.9930}) / 1000, 348.5387223209787);
+	it('distanceBetween({"type": "Point", "coordinates": [40, -70]}, {"type": "Point", "coordinates": [40.7419, -73.9930]}) should return 348.5387223209787 km', function() {
+		assert.equal(WGS84Util.distanceBetween({"type": "Point", "coordinates": [40, -70]}, {"type": "Point", "coordinates": [40.7419, -73.9930]}) / 1000, 348.5387223209787);
 	});
 
    // SFO
