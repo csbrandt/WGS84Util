@@ -5,7 +5,12 @@
 
 
 /** @module wgs84-util */
-var WGS84Util = exports;
+var WGS84Util
+if ( typeof module === "object" && typeof module.exports === "object" ) {
+    WGS84Util = exports;
+} else {
+    WGS84Util = {};
+}
 
 // Semi-Major Axis (Equatorial Radius)
 var SEMI_MAJOR_AXIS = 6378137.0;
@@ -18,18 +23,18 @@ var ECC_SQUARED = 0.006694380004260827;
  *
  * @param {object} coordA
  * @param {object} coordB
- * @return {number} the distance from this point to the supplied point, in km 
+ * @return {number} the distance from this point to the supplied point, in km
  * (using Haversine formula)
  *
  */
-WGS84Util.distanceBetween = function(coordA, coordB) {  
+WGS84Util.distanceBetween = function(coordA, coordB) {
   var lat1 = this.degToRad(coordA.coordinates[0]), lon1 = this.degToRad(coordA.coordinates[1]);
   var lat2 = this.degToRad(coordB.coordinates[0]), lon2 = this.degToRad(coordB.coordinates[1]);
   var dLat = lat2 - lat1;
   var dLon = lon2 - lon1;
 
   var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-          Math.cos(lat1) * Math.cos(lat2) * 
+          Math.cos(lat1) * Math.cos(lat2) *
           Math.sin(dLon/2) * Math.sin(dLon/2);
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = SEMI_MAJOR_AXIS * c;
@@ -37,7 +42,7 @@ WGS84Util.distanceBetween = function(coordA, coordB) {
 };
 
 /**
- * Returns the destination point from this point having travelled the given distance (in m) on the 
+ * Returns the destination point from this point having travelled the given distance (in m) on the
  * given initial bearing (bearing may vary before destination is reached)
  *
  *   see http://williams.best.vwh.net/avform.htm#LL
@@ -51,12 +56,12 @@ WGS84Util.distanceBetween = function(coordA, coordB) {
 WGS84Util.destinationPoint = function(coordA, brng, dist) {
   dist = typeof(dist) == 'number' ? dist : typeof(dist) == 'string' && dist.trim() != '' ? +dist : NaN;
   dist = dist / SEMI_MAJOR_AXIS;  // convert dist to angular distance in radians
-  brng = this.degToRad(brng);  // 
+  brng = this.degToRad(brng);  //
   var lat1 = this.degToRad(coordA.coordinates[0]), lon1 = this.degToRad(coordA.coordinates[1]);
 
-  var lat2 = Math.asin( Math.sin(lat1) * Math.cos(dist) + 
+  var lat2 = Math.asin( Math.sin(lat1) * Math.cos(dist) +
                         Math.cos(lat1) * Math.sin(dist) * Math.cos(brng) );
-  var lon2 = lon1 + Math.atan2(Math.sin(brng) * Math.sin(dist) * Math.cos(lat1), 
+  var lon2 = lon1 + Math.atan2(Math.sin(brng) * Math.sin(dist) * Math.cos(lat1),
                                Math.cos(dist) - Math.sin(lat1) * Math.sin(lat2));
   lon2 = (lon2 + 3 * Math.PI) % (2 * Math.PI) - Math.PI;  // normalise to -180..+180º
 
@@ -151,7 +156,7 @@ WGS84Util.LLtoUTM = function(ll) {
     var UTMEasting = (k0 * N * (A + (1 - T + C) * A * A * A / 6.0 + (5 - 18 * T + T * T + 72 * C - 58 * eccPrimeSquared) * A * A * A * A * A / 120.0) + 500000.0);
 
     var UTMNorthing = (k0 * (M + N * Math.tan(LatRad) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A * A * A * A / 24.0 + (61 - 58 * T + T * T + 600 * C - 330 * eccPrimeSquared) * A * A * A * A * A * A / 720.0)));
-    
+
     if (Lat < 0.0) {
         UTMNorthing += 10000000.0; //10000000 meter offset for
         // southern hemisphere
