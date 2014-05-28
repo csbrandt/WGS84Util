@@ -1,0 +1,24 @@
+{
+  "name": "wgs84-util",
+  "version": "1.0.0",
+  "description": "Geographic coordinate utilities using WGS84 datum",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/csbrandt/WGS84Util.git"
+  },
+  "author": "csbrandt",
+  "license": "MIT",
+  "keywords": [
+    "wgs84",
+    "geodesy",
+    "ellipsoid",
+    "UTM",
+    "GeoJSON"
+  ],
+  "ignore": [
+    "**/.*",
+    "Makefile",
+    "test",
+    "coverage"
+  ]
+}

@@ -4,8 +4,11 @@ Geographic coordinate utilities using WGS84 datum
 
 Installation
 -------------
-    $ npm install wgs84-util
+    $ npm install wgs84-util 
+Or
 
+    $ bower install wgs84-util 
+    
 Methods
 --------
     distanceBetween(coordA, coordB)
