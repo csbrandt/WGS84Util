@@ -1,6 +1,6 @@
 {
   "name": "wgs84-util",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Geographic coordinate utilities using WGS84 datum",
   "main": "index.js",
   "repository": {
@@ -22,6 +22,7 @@
   ],
   "devDependencies": {
     "mocha": "~1.17.1",
-    "istanbul": "~0.2.10"
+    "istanbul": "~0.2.10",
+    "browserify": "~4.1.8"
   }
 }
