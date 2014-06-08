@@ -26,7 +26,7 @@ Methods
 > *number*,  the distance from this point to the supplied point, in km
 
     destinationPoint(coordA, bearing, dist)
-> Returns the destination point from this point having travelled the given distance (in m) on the 
+> Returns the destination point from this point having travelled the given distance (in m) on the
 > given initial bearing (bearing may vary before destination is reached)
 > see http://williams.best.vwh.net/avform.htm#LL
 
@@ -38,7 +38,7 @@ Methods
 
 > **bearing**:  *number*,  initial bearing in degrees
 
-> **dist**:  *number*, the distance from the supplied point, in m 
+> **dist**:  *number*, the distance from the supplied point, in m
 
 
 > **Returns**
@@ -84,7 +84,7 @@ Methods
 
 > **Returns**
 
-> *object*,  GeoJSON feature containing the UTM value with easting and northing  
+> *object*,  GeoJSON feature containing the UTM value with easting and northing
 
     UTMtoLL(utm)
 > Converts UTM coords to lat/long, using the WGS84 ellipsoid. This is a convenience
@@ -118,7 +118,7 @@ Then run the tests:
 
     $ npm test
 
-Code Coverage 
+Code Coverage
 --------------
 Install the development dependencies:
 
@@ -132,6 +132,9 @@ View coverage reports
 
     $ firefox coverage/lcov-report/index.html
 
+Browser Bundle
+---------------
+    $ npm run build
 
 ## License
 
