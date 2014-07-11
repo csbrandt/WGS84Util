@@ -7,7 +7,7 @@
     "url": "https://github.com/csbrandt/WGS84Util.git"
   },
   "scripts": {
-    "test": "mocha --ui tdd",
+    "test": "make test",
     "coverage": "istanbul cover _mocha test --recursive -- -u      exports -R spec",
     "build": "browserify index.js > bundle.js"
   },
