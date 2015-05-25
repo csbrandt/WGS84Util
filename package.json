@@ -1,6 +1,6 @@
 {
   "name": "wgs84-util",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Geographic coordinate utilities using WGS84 datum",
   "main": "index.js",
   "repository": {
@@ -9,7 +9,7 @@
   "scripts": {
     "test": "make test",
     "coverage": "istanbul cover _mocha test --recursive -- -u      exports -R spec",
-    "build": "browserify index.js > bundle.js"
+    "build": "browserify index.js > dist/bundle.js"
   },
   "author": "csbrandt",
   "license": "MIT",

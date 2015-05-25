@@ -736,20 +736,20 @@ var ECC_SQUARED = 0.006694380004260827;
  * From: Haversine formula - RW Sinnott, "Virtues of the Haversine",
  *       Sky and Telescope, vol 68, no 2, 1984
  *
- * @param {object} coordA
- * @param {object} coordB
- * @return {number} the distance from this point to the supplied point, in km 
+ * @param {object} coordA GeoJSON point
+ * @param {object} coordB GeoJSON point
+ * @return {number} the distance from this point to the supplied point, in km
  * (using Haversine formula)
  *
  */
-WGS84Util.distanceBetween = function(coordA, coordB) {  
-  var lat1 = this.degToRad(coordA.coordinates[0]), lon1 = this.degToRad(coordA.coordinates[1]);
-  var lat2 = this.degToRad(coordB.coordinates[0]), lon2 = this.degToRad(coordB.coordinates[1]);
+WGS84Util.distanceBetween = function(coordA, coordB) {
+  var lat1 = this.degToRad(coordA.coordinates[1]), lon1 = this.degToRad(coordA.coordinates[0]);
+  var lat2 = this.degToRad(coordB.coordinates[1]), lon2 = this.degToRad(coordB.coordinates[0]);
   var dLat = lat2 - lat1;
   var dLon = lon2 - lon1;
 &nbsp;
   var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-          Math.cos(lat1) * Math.cos(lat2) * 
+          Math.cos(lat1) * Math.cos(lat2) *
           Math.sin(dLon/2) * Math.sin(dLon/2);
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = SEMI_MAJOR_AXIS * c;
@@ -757,7 +757,7 @@ WGS84Util.distanceBetween = function(coordA, coordB) {
 };
 &nbsp;
 /**
- * Returns the destination point from this point having travelled the given distance (in m) on the 
+ * Returns the destination point from this point having travelled the given distance (in m) on the
  * given initial bearing (bearing may vary before destination is reached)
  *
  *   see http://williams.best.vwh.net/avform.htm#LL
@@ -771,18 +771,18 @@ WGS84Util.distanceBetween = function(coordA, coordB) {
 WGS84Util.destinationPoint = function(coordA, brng, dist) {
   dist = typeof(dist) == 'number' ? dist : <span class="branch-1 cbranch-no" title="branch not covered" >typeof(dist) == 'string' &amp;&amp; dist.trim() != '' ? +dist : NaN;</span>
   dist = dist / SEMI_MAJOR_AXIS;  // convert dist to angular distance in radians
-  brng = this.degToRad(brng);  // 
-  var lat1 = this.degToRad(coordA.coordinates[0]), lon1 = this.degToRad(coordA.coordinates[1]);
+  brng = this.degToRad(brng);  //
+  var lat1 = this.degToRad(coordA.coordinates[1]), lon1 = this.degToRad(coordA.coordinates[0]);
 &nbsp;
-  var lat2 = Math.asin( Math.sin(lat1) * Math.cos(dist) + 
+  var lat2 = Math.asin( Math.sin(lat1) * Math.cos(dist) +
                         Math.cos(lat1) * Math.sin(dist) * Math.cos(brng) );
-  var lon2 = lon1 + Math.atan2(Math.sin(brng) * Math.sin(dist) * Math.cos(lat1), 
+  var lon2 = lon1 + Math.atan2(Math.sin(brng) * Math.sin(dist) * Math.cos(lat1),
                                Math.cos(dist) - Math.sin(lat1) * Math.sin(lat2));
   lon2 = (lon2 + 3 * Math.PI) % (2 * Math.PI) - Math.PI;  // normalise to -180..+180º
 &nbsp;
   return {
     "type": "Point",
-    "coordinates": [this.radToDeg(lat2).toFixed(10), this.radToDeg(lon2).toFixed(10)]
+    "coordinates": [parseFloat(this.radToDeg(lon2).toFixed(10)), parseFloat(this.radToDeg(lat2).toFixed(10))]
   };
 };
 &nbsp;
@@ -817,8 +817,8 @@ WGS84Util.radToDeg = function(rad) {
  *     accuracy property in digits. Returns null if the conversion failed.
  */
 WGS84Util.LLtoUTM = function(ll) {
-    var Lat = ll.coordinates[0];
-    var Long = ll.coordinates[1];
+    var Lat = ll.coordinates[1];
+    var Long = ll.coordinates[0];
     var k0 = 0.9996;
     var LongOrigin;
     var eccPrimeSquared;
@@ -871,14 +871,14 @@ WGS84Util.LLtoUTM = function(ll) {
     var UTMEasting = (k0 * N * (A + (1 - T + C) * A * A * A / 6.0 + (5 - 18 * T + T * T + 72 * C - 58 * eccPrimeSquared) * A * A * A * A * A / 120.0) + 500000.0);
 &nbsp;
     var UTMNorthing = (k0 * (M + N * Math.tan(LatRad) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A * A * A * A / 24.0 + (61 - 58 * T + T * T + 600 * C - 330 * eccPrimeSquared) * A * A * A * A * A * A / 720.0)));
-    
+&nbsp;
     if (Lat &lt; 0.0) {
         UTMNorthing += 10000000.0; //10000000 meter offset for
         // southern hemisphere
         zoneLetter = 'S';
     }
 &nbsp;
-    return {"type": "Feature", "geometry": {"type": "Point", "coordinates": [UTMEasting.toFixed(1), UTMNorthing.toFixed(1)]}, "properties": {"zoneLetter": zoneLetter, "zoneNumber": ZoneNumber}};
+    return {"type": "Feature", "geometry": {"type": "Point", "coordinates": [parseFloat(UTMEasting.toFixed(1)), parseFloat(UTMNorthing.toFixed(1))]}, "properties": {"zoneLetter": zoneLetter, "zoneNumber": ZoneNumber}};
 };
 &nbsp;
 /**
@@ -963,8 +963,8 @@ WGS84Util.UTMtoLL = function(utm) {
             left: lon
         };
     } else {
-        result.coordinates[0] = lat.toFixed(8);
-        result.coordinates[1] = lon.toFixed(8);
+        result.coordinates[0] = parseFloat(lon.toFixed(8));
+        result.coordinates[1] = parseFloat(lat.toFixed(8));
     }
 &nbsp;
     return result;
@@ -974,7 +974,7 @@ WGS84Util.UTMtoLL = function(utm) {
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 08 2014 10:02:21 GMT-0700 (PDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon May 25 2015 12:45:50 GMT-0700 (PDT)</div>
 </div>
 
 <script src="../prettify.js"></script>
