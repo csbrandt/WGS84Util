@@ -11,102 +11,89 @@ Methods
     distanceBetween(coordA, coordB)
 > From: Haversine formula - RW Sinnott, "Virtues of the Haversine",
 > Sky and Telescope, vol 68, no 2, 1984
-
-
+>
 > **Parameters**
-
+>
 > **coordA**:  *object*,  GeoJSON point
-
-
+>
 > **coordB**:  *object*,  GeoJSON point
-
-
+>
 > **Returns**
-
+>
 > *number*,  the distance from this point to the supplied point, in km
 
     destinationPoint(coordA, bearing, dist)
-> Returns the destination point from this point having travelled the given distance (in m) on the
+> Returns the destination point from this point having traveled the given distance (in m) on the
 > given initial bearing (bearing may vary before destination is reached)
 > see http://williams.best.vwh.net/avform.htm#LL
-
-
+>
 > **Parameters**
-
+>
 > **coordA**:  *object*, GeoJSON point
-
-
+>
 > **bearing**:  *number*,  initial bearing in degrees
-
+>
 > **dist**:  *number*, the distance from the supplied point, in m
-
-
+>
 > **Returns**
-
+>
 > *object*,  GeoJSON destination point
 
 
     degToRad(deg)
 > Conversion from degrees to radians.
-
-
+>
 > **Parameters**
-
+>
 > **deg**:  *number*,  the angle in degrees.
-
+>
 > **Returns**
-
+>
 > *number*,  the angle in radians.
 
     radToDeg(rad)
 
 > Conversion from radians to degrees.
-
+>
 > **Parameters**
-
+>
 > **rad**:  *number*,  the angle in radians.
-
+>
 > **Returns**
-
+>
 > *number*,  the angle in degrees.
 
     LLtoUTM(ll)
 
-> Converts a set of Longitude and Latitude co-ordinates to UTM
+> Converts a set of Longitude and Latitude coordinates to UTM
 > using the WGS84 ellipsoid.
-
-> representing the WGS84 coordinate to be converted.
+>
+> **Parameters**
+>
+> **ll**:  *object*, GeoJSON point representing the coordinate to be converted.
+>
+> **Returns**
+>
+> *object*,  GeoJSON feature containing the UTM value with easting,
 > northing, zoneNumber and zoneLetter properties, and an optional
 > accuracy property in digits. Returns null if the conversion failed.
 
-> **Parameters**
-> **ll**:  *object*,  GeoJSON object with latitude and longitude properties
-
-> **Returns**
-
-> *object*,  GeoJSON feature containing the UTM value with easting and northing
-
     UTMtoLL(utm)
-> Converts UTM coords to lat/long, using the WGS84 ellipsoid. This is a convenience
-> class where the Zone can be specified as a single string eg."60N" which
-> is then broken down into the ZoneNumber and ZoneLetter.
-
+> Converts UTM coordinates to lat/long, using the WGS84 ellipsoid.
+>
+> **Parameters**
+>
+> **utm**:  *object*, with northing, easting, zoneNumber
 > and zoneLetter properties. If an optional accuracy property is
 > provided (in meters), a bounding box will be returned instead of
 > latitude and longitude.
+>
+> **Returns**
+>
+> *object*, GeoJSON object containing either lat and lon values
 > (if no accuracy was provided), or top, right, bottom and left values
 > for the bounding box calculated according to the provided accuracy.
 > Returns null if the conversion failed.
-
-
-> **Parameters**
-
-> **utm**:  *object*,  GeoJSON object with easting, northing, zoneNumber
-
-> **Returns**
-
-> *object*,  GeoJSON object containing value with latitude and longitude
-
 
 Running Tests
 --------------
