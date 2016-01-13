@@ -2,221 +2,48 @@
 <html lang="en">
 <head>
     <title>Code coverage report for WGS84Util/index.js</title>
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" href="../prettify.css">
-
-    <style>
-        body, html {
-            margin:0; padding: 0;
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
         }
-        body {
-            font-family: Helvetica Neue, Helvetica,Arial;
-            font-size: 10pt;
-        }
-        div.header, div.footer {
-            background: #eee;
-            padding: 1em;
-        }
-        div.header {
-            z-index: 100;
-            position: fixed;
-            top: 0;
-            border-bottom: 1px solid #666;
-            width: 100%;
-        }
-        div.footer {
-            border-top: 1px solid #666;
-        }
-        div.body {
-            margin-top: 10em;
-        }
-        div.meta {
-            font-size: 90%;
-            text-align: center;
-        }
-        h1, h2, h3 {
-            font-weight: normal;
-        }
-        h1 {
-            font-size: 12pt;
-        }
-        h2 {
-            font-size: 10pt;
-        }
-        pre {
-            font-family: Consolas, Menlo, Monaco, monospace;
-            margin: 0;
-            padding: 0;
-            line-height: 14px;
-            font-size: 14px;
-            -moz-tab-size: 2;
-            -o-tab-size:  2;
-            tab-size: 2;
-        }
-
-        div.path { font-size: 110%; }
-        div.path a:link, div.path a:visited { color: #000; }
-        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
-
-        table.coverage td {
-            margin: 0;
-            padding: 0;
-            color: #111;
-            vertical-align: top;
-        }
-        table.coverage td.line-count {
-            width: 50px;
-            text-align: right;
-            padding-right: 5px;
-        }
-        table.coverage td.line-coverage {
-            color: #777 !important;
-            text-align: right;
-            border-left: 1px solid #666;
-            border-right: 1px solid #666;
-        }
-
-        table.coverage td.text {
-        }
-
-        table.coverage td span.cline-any {
-            display: inline-block;
-            padding: 0 5px;
-            width: 40px;
-        }
-        table.coverage td span.cline-neutral {
-            background: #eee;
-        }
-        table.coverage td span.cline-yes {
-            background: #b5d592;
-            color: #999;
-        }
-        table.coverage td span.cline-no {
-            background: #fc8c84;
-        }
-
-        .cstat-yes { color: #111; }
-        .cstat-no { background: #fc8c84; color: #111; }
-        .fstat-no { background: #ffc520; color: #111 !important; }
-        .cbranch-no { background:  yellow !important; color: #111; }
-
-        .cstat-skip { background: #ddd; color: #111; }
-        .fstat-skip { background: #ddd; color: #111 !important; }
-        .cbranch-skip { background: #ddd !important; color: #111; }
-
-        .missing-if-branch {
-            display: inline-block;
-            margin-right: 10px;
-            position: relative;
-            padding: 0 4px;
-            background: black;
-            color: yellow;
-        }
-
-        .skip-if-branch {
-            display: none;
-            margin-right: 10px;
-            position: relative;
-            padding: 0 4px;
-            background: #ccc;
-            color: white;
-        }
-
-        .missing-if-branch .typ, .skip-if-branch .typ {
-            color: inherit !important;
-        }
-
-        .entity, .metric { font-weight: bold; }
-        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
-        .metric small { font-size: 80%; font-weight: normal; color: #666; }
-
-        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
-        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
-        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
-        div.coverage-summary th.file { border-right: none !important; }
-        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
-        div.coverage-summary th.pct { border-right: none !important; }
-        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
-        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
-        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
-        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
-        div.coverage-summary td.pic { min-width: 120px !important;  }
-        div.coverage-summary a:link { text-decoration: none; color: #000; }
-        div.coverage-summary a:visited { text-decoration: none; color: #333; }
-        div.coverage-summary a:hover { text-decoration: underline; }
-        div.coverage-summary tfoot td { border-top: 1px solid #666; }
-
-        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
-            height: 10px;
-            width: 7px;
-            display: inline-block;
-            margin-left: 0.5em;
-        }
-        div.coverage-summary .yui3-datatable-sort-indicator {
-            background: url("http://yui.yahooapis.com/3.6.0/build/datatable-sort/assets/skins/sam/sort-arrow-sprite.png") no-repeat scroll 0 0 transparent;
-        }
-        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
-            background-position: 0 -20px;
-        }
-        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
-            background-position: 0 -10px;
-        }
-
-        .high { background: #b5d592 !important; }
-        .medium { background: #ffe87c !important; }
-        .low { background: #fc8c84 !important; }
-
-        span.cover-fill, span.cover-empty {
-            display:inline-block;
-            border:1px solid #444;
-            background: white;
-            height: 12px;
-        }
-        span.cover-fill {
-            background: #ccc;
-            border-right: 1px solid #444;
-        }
-        span.cover-empty {
-            background: white;
-            border-left: none;
-        }
-        span.cover-full {
-            border-right: none !important;
-        }
-        pre.prettyprint {
-            border: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-        .com { color: #999 !important; }
-        .ignore-none { color: #999; font-weight: normal; }
-
     </style>
 </head>
 <body>
-<div class="header high">
-    <h1>Code coverage report for <span class="entity">WGS84Util/index.js</span></h1>
-    <h2>
-        
-        Statements: <span class="metric">87.38% <small>(90 / 103)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        
-        
-        Branches: <span class="metric">31.82% <small>(14 / 44)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        
-        
-        Functions: <span class="metric">100% <small>(6 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        
-        
-        Lines: <span class="metric">87.38% <small>(90 / 103)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        
-        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
-    </h2>
-    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">WGS84Util/</a> &#187; index.js</div>
-</div>
-<div class="body">
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">WGS84Util/</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">89.03% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>138/155</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">44.23% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>23/52</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">89.03% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>138/155</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
-<tr><td class="line-count">1
+<tr><td class="line-count quiet">1
 2
 3
 4
@@ -467,21 +294,150 @@
 249
 250
 251
-252</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -491,218 +447,343 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">25×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">17</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">9</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -712,11 +793,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/** @fileOverview Geographic coordinate utilities using WGS84 datum
  *  @author cs_brandt
@@ -729,81 +810,195 @@ var WGS84Util = exports;
 &nbsp;
 // Semi-Major Axis (Equatorial Radius)
 var SEMI_MAJOR_AXIS = 6378137.0;
+// Semi-Minor Axis
+var SEMI_MINOR_AXIS = 6356752.314245;
+// f = 1/298.257223563
+var FLATTENING = 0.0033528106647474805;
 // First Eccentricity Squared
 var ECC_SQUARED = 0.006694380004260827;
 &nbsp;
 /**
- * From: Haversine formula - RW Sinnott, "Virtues of the Haversine",
- *       Sky and Telescope, vol 68, no 2, 1984
+ * Calculate the distance between a set of GeoJSON points in meters
+ * Uses Vincenty inverse calculation
+ * Adapted from http://www.movable-type.co.uk/scripts/latlong-vincenty.html
  *
- * @param {object} coordA GeoJSON point
- * @param {object} coordB GeoJSON point
- * @return {number} the distance from this point to the supplied point, in km
- * (using Haversine formula)
- *
+ * @param {object} pointA GeoJSON point
+ * @param {object} pointB GeoJSON point
+ * @param {boolean} bearings optional switch for including the bearings in degrees
+ * @return {number | object} the distance from this point to the supplied point
+ * in meters or an object that includes distance, initial and final bearings
+ * @throws  {Error}  if formula failed to converge
  */
-WGS84Util.distanceBetween = function(coordA, coordB) {
-  var lat1 = this.degToRad(coordA.coordinates[1]), lon1 = this.degToRad(coordA.coordinates[0]);
-  var lat2 = this.degToRad(coordB.coordinates[1]), lon2 = this.degToRad(coordB.coordinates[0]);
-  var dLat = lat2 - lat1;
-  var dLon = lon2 - lon1;
+WGS84Util.distanceBetween = function(pointA, pointB, bearings) {
+   var L = this.degToRad(pointB.coordinates[0]) - this.degToRad(pointA.coordinates[0]);
 &nbsp;
-  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-          Math.cos(lat1) * Math.cos(lat2) *
-          Math.sin(dLon/2) * Math.sin(dLon/2);
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  var d = SEMI_MAJOR_AXIS * c;
-  return d;
+   var tanU1 = (1 - FLATTENING) * Math.tan(this.degToRad(pointA.coordinates[1])),
+      cosU1 = 1 / Math.sqrt((1 + tanU1 * tanU1)),
+      sinU1 = tanU1 * cosU1;
+   var tanU2 = (1 - FLATTENING) * Math.tan(this.degToRad(pointB.coordinates[1])),
+      cosU2 = 1 / Math.sqrt((1 + tanU2 * tanU2)),
+      sinU2 = tanU2 * cosU2;
+&nbsp;
+   var lambda = L,
+      lambdaPrime, iterationLimit = 100;
+&nbsp;
+   do {
+      var sinLambda = Math.sin(lambda),
+         cosLambda = Math.cos(lambda);
+      var sinSqSigma = (cosU2 * sinLambda) * (cosU2 * sinLambda) + (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda) * (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda);
+      var sinSigma = Math.sqrt(sinSqSigma);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (sinSigma === 0) {
+<span class="cstat-no" title="statement not covered" >         return 0; </span>// co-incident points
+      }
+&nbsp;
+      var cosSigma = sinU1 * sinU2 + cosU1 * cosU2 * cosLambda;
+      var sigma = Math.atan2(sinSigma, cosSigma);
+      var sinAlpha = cosU1 * cosU2 * sinLambda / sinSigma;
+      var cosSqAlpha = 1 - sinAlpha * sinAlpha;
+      var cos2SigmaM = cosSigma - 2 * sinU1 * sinU2 / cosSqAlpha;
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(cos2SigmaM)) {
+<span class="cstat-no" title="statement not covered" >         cos2SigmaM = 0; </span>// equatorial line: cosSqAlpha=0 (§6)
+      }
+&nbsp;
+      var C = FLATTENING / 16 * cosSqAlpha * (4 + FLATTENING * (4 - 3 * cosSqAlpha));
+      lambdaPrime = lambda;
+      lambda = L + (1 - C) * FLATTENING * sinAlpha * (sigma + C * sinSigma * (cos2SigmaM + C * cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM)));
+&nbsp;
+   } while (Math.abs(lambda - lambdaPrime) &gt; 1e-12 &amp;&amp; --iterationLimit &gt; 0);
+&nbsp;
+   <span class="missing-if-branch" title="if path not taken" >I</span>if (iterationLimit === 0) {
+<span class="cstat-no" title="statement not covered" >      throw new Error('Formula failed to converge');</span>
+   }
+&nbsp;
+   var uSq = cosSqAlpha * (SEMI_MAJOR_AXIS * SEMI_MAJOR_AXIS - SEMI_MINOR_AXIS * SEMI_MINOR_AXIS) / (SEMI_MINOR_AXIS * SEMI_MINOR_AXIS);
+   var A = 1 + uSq / 16384 * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq)));
+   var B = uSq / 1024 * (256 + uSq * (-128 + uSq * (74 - 47 * uSq)));
+   var deltaSigma = B * sinSigma * (cos2SigmaM + B / 4 * (cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM) -
+      B / 6 * cos2SigmaM * (-3 + 4 * sinSigma * sinSigma) * (-3 + 4 * cos2SigmaM * cos2SigmaM)));
+&nbsp;
+   var s = SEMI_MINOR_AXIS * A * (sigma - deltaSigma);
+&nbsp;
+   var alpha1 = Math.atan2(cosU2 * sinLambda, cosU1 * sinU2 - sinU1 * cosU2 * cosLambda);
+   var alpha2 = Math.atan2(cosU1 * sinLambda, -sinU1 * cosU2 + cosU1 * sinU2 * cosLambda);
+&nbsp;
+   var solution = {
+      "distance": Number(s.toFixed(4)),
+      "initialBearing": this.radToDeg((alpha1 + 2 * Math.PI) % (2 * Math.PI)),
+      "finalBearing": this.radToDeg((alpha2 + 2 * Math.PI) % (2 * Math.PI))
+   };
+&nbsp;
+   if (bearings) {
+      return solution;
+   } else {
+      return solution.distance;
+   }
 };
 &nbsp;
 /**
- * Returns the destination point from this point having travelled the given distance (in m) on the
- * given initial bearing (bearing may vary before destination is reached)
+ * Convenience function for returning only the initial and final bearings
+ * between the givin coordinates (forward azimuths at each point)
  *
- *   see http://williams.best.vwh.net/avform.htm#LL
+ * @param {object} pointA GeoJSON point
+ * @param {object} pointB GeoJSON point
+ * @return {object} forward azimuths (initial and final bearings) at each point in degrees
  *
- * @param   {object} coordA GeoJSON point
- * @param   {Number} brng: Initial bearing in degrees
- * @param   {Number} dist: Distance in m
- *
- * @returns {object} GeoJSON destination point
  */
-WGS84Util.destinationPoint = function(coordA, brng, dist) {
-  dist = typeof(dist) == 'number' ? dist : <span class="branch-1 cbranch-no" title="branch not covered" >typeof(dist) == 'string' &amp;&amp; dist.trim() != '' ? +dist : NaN;</span>
-  dist = dist / SEMI_MAJOR_AXIS;  // convert dist to angular distance in radians
-  brng = this.degToRad(brng);  //
-  var lat1 = this.degToRad(coordA.coordinates[1]), lon1 = this.degToRad(coordA.coordinates[0]);
+WGS84Util.bearingsBetween = function(pointA, pointB) {
+   var solution = this.distanceBetween(pointA, pointB, true);
 &nbsp;
-  var lat2 = Math.asin( Math.sin(lat1) * Math.cos(dist) +
-                        Math.cos(lat1) * Math.sin(dist) * Math.cos(brng) );
-  var lon2 = lon1 + Math.atan2(Math.sin(brng) * Math.sin(dist) * Math.cos(lat1),
-                               Math.cos(dist) - Math.sin(lat1) * Math.sin(lat2));
-  lon2 = (lon2 + 3 * Math.PI) % (2 * Math.PI) - Math.PI;  // normalise to -180..+180º
-&nbsp;
-  return {
-    "type": "Point",
-    "coordinates": [parseFloat(this.radToDeg(lon2).toFixed(10)), parseFloat(this.radToDeg(lat2).toFixed(10))]
-  };
+   return {
+      "initialBearing": solution.initialBearing,
+      "finalBearing": solution.finalBearing
+   };
 };
 &nbsp;
 /**
- * Conversion from degrees to radians.
+ * Calculate the destination point from this point having travelled the given
+ * distance in meters on the given initial bearing
+ * Uses Vincenty direct calculation
+ * Adapted from http://www.movable-type.co.uk/scripts/latlong-vincenty.html
  *
- * @param {number} deg the angle in degrees.
- * @return {number} the angle in radians.
+ * @param   {object} point  GeoJSON point
+ * @param   {number} bearing  initial bearing in degrees from north
+ * @param   {number} distance  distance along bearing in meters
+ * @returns {object} GeoJSON destination point, finalBearing
+ * @throws  {Error}  if formula failed to converge
+ */
+WGS84Util.destination = function(point, bearing, distance) {
+   var alpha1 = this.degToRad(bearing);
+   var s = distance;
+&nbsp;
+   var sinAlpha1 = Math.sin(alpha1);
+   var cosAlpha1 = Math.cos(alpha1);
+&nbsp;
+   var tanU1 = (1 - FLATTENING) * Math.tan(this.degToRad(point.coordinates[1])),
+      cosU1 = 1 / Math.sqrt((1 + tanU1 * tanU1)),
+      sinU1 = tanU1 * cosU1;
+   var sigma1 = Math.atan2(tanU1, cosAlpha1);
+   var sinAlpha = cosU1 * sinAlpha1;
+   var cosSqAlpha = 1 - sinAlpha * sinAlpha;
+   var uSq = cosSqAlpha * (SEMI_MAJOR_AXIS * SEMI_MAJOR_AXIS - SEMI_MINOR_AXIS * SEMI_MINOR_AXIS) / (SEMI_MINOR_AXIS * SEMI_MINOR_AXIS);
+   var A = 1 + uSq / 16384 * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq)));
+   var B = uSq / 1024 * (256 + uSq * (-128 + uSq * (74 - 47 * uSq)));
+&nbsp;
+   var cos2SigmaM, sinSigma, cosSigma, deltaSigma;
+&nbsp;
+   var sigma = s / (SEMI_MINOR_AXIS * A),
+      sigmaPrime, iterations = 0;
+&nbsp;
+   do {
+      cos2SigmaM = Math.cos(2 * sigma1 + sigma);
+      sinSigma = Math.sin(sigma);
+      cosSigma = Math.cos(sigma);
+      deltaSigma = B * sinSigma * (cos2SigmaM + B / 4 * (cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM) -
+         B / 6 * cos2SigmaM * (-3 + 4 * sinSigma * sinSigma) * (-3 + 4 * cos2SigmaM * cos2SigmaM)));
+      sigmaPrime = sigma;
+      sigma = s / (SEMI_MINOR_AXIS * A) + deltaSigma;
+   } while (Math.abs(sigma - sigmaPrime) &gt; 1e-12 &amp;&amp; ++iterations &lt; 200);
+&nbsp;
+   <span class="missing-if-branch" title="if path not taken" >I</span>if (iterations &gt;= 200) {
+<span class="cstat-no" title="statement not covered" >      throw new Error('Formula failed to converge'); </span>// not possible?
+   }
+&nbsp;
+   var x = sinU1 * sinSigma - cosU1 * cosSigma * cosAlpha1;
+   var phi2 = Math.atan2(sinU1 * cosSigma + cosU1 * sinSigma * cosAlpha1, (1 - FLATTENING) * Math.sqrt(sinAlpha * sinAlpha + x * x));
+   var lambda = Math.atan2(sinSigma * sinAlpha1, cosU1 * cosSigma - sinU1 * sinSigma * cosAlpha1);
+   var C = FLATTENING / 16 * cosSqAlpha * (4 + FLATTENING * (4 - 3 * cosSqAlpha));
+   var L = lambda - (1 - C) * FLATTENING * sinAlpha *
+      (sigma + C * sinSigma * (cos2SigmaM + C * cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM)));
+&nbsp;
+   var lambda2 = (this.degToRad(point.coordinates[0]) + L + 3 * Math.PI) % (2 * Math.PI) - Math.PI; // normalise to -180...+180
+   var alpha2 = Math.atan2(sinAlpha, -x);
+&nbsp;
+   return {
+      "point": {
+         "type": "Point",
+         "coordinates": [Number(this.radToDeg(lambda2).toFixed(10)), Number(this.radToDeg(phi2).toFixed(10))]
+      },
+      "finalBearing": this.radToDeg((alpha2 + 2 * Math.PI) % (2 * Math.PI))
+   };
+};
+&nbsp;
+/**
+ * Conversion from degrees to radians
+ *
+ * @param {number} deg angle in degrees
+ * @return {number} angle in radians
  */
 WGS84Util.degToRad = function(deg) {
-    return (deg * (Math.PI / 180.0));
+   return (deg * (Math.PI / 180.0));
 };
 &nbsp;
 /**
- * Conversion from radians to degrees.
+ * Conversion from radians to degrees
  *
- * @param {number} rad the angle in radians.
- * @return {number} the angle in degrees.
+ * @param {number} rad angle in radians
+ * @return {number} angle in degrees
  */
 WGS84Util.radToDeg = function(rad) {
-    return (180.0 * (rad / Math.PI));
+   return (180.0 * (rad / Math.PI));
 };
 &nbsp;
 /**
@@ -817,68 +1012,78 @@ WGS84Util.radToDeg = function(rad) {
  *     accuracy property in digits. Returns null if the conversion failed.
  */
 WGS84Util.LLtoUTM = function(ll) {
-    var Lat = ll.coordinates[1];
-    var Long = ll.coordinates[0];
-    var k0 = 0.9996;
-    var LongOrigin;
-    var eccPrimeSquared;
-    var N, T, C, A, M;
-    var LatRad = this.degToRad(Lat);
-    var LongRad = this.degToRad(Long);
-    var LongOriginRad;
-    var ZoneNumber;
-    var zoneLetter = 'N';
-    // (int)
-    ZoneNumber = Math.floor((Long + 180) / 6) + 1;
+   var Lat = ll.coordinates[1];
+   var Long = ll.coordinates[0];
+   var k0 = 0.9996;
+   var LongOrigin;
+   var eccPrimeSquared;
+   var N, T, C, A, M;
+   var LatRad = this.degToRad(Lat);
+   var LongRad = this.degToRad(Long);
+   var LongOriginRad;
+   var ZoneNumber;
+   var zoneLetter = 'N';
+   // (int)
+   ZoneNumber = Math.floor((Long + 180) / 6) + 1;
 &nbsp;
-    //Make sure the longitude 180.00 is in Zone 60
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (Long === 180) {
-<span class="cstat-no" title="statement not covered" >        ZoneNumber = 60;</span>
-    }
+   //Make sure the longitude 180.00 is in Zone 60
+   <span class="missing-if-branch" title="if path not taken" >I</span>if (Long === 180) {
+<span class="cstat-no" title="statement not covered" >      ZoneNumber = 60;</span>
+   }
 &nbsp;
-    // Special zone for Norway
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (Lat &gt;= 56.0 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >Lat &lt; 64.0 </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >Long &gt;= 3.0 </span>&amp;&amp; <span class="branch-3 cbranch-no" title="branch not covered" >Long &lt; 12.0)</span> {
-<span class="cstat-no" title="statement not covered" >        ZoneNumber = 32;</span>
-    }
+   // Special zone for Norway
+   <span class="missing-if-branch" title="if path not taken" >I</span>if (Lat &gt;= 56.0 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >Lat &lt; 64.0 </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >Long &gt;= 3.0 </span>&amp;&amp; <span class="branch-3 cbranch-no" title="branch not covered" >Long &lt; 12.0)</span> {
+<span class="cstat-no" title="statement not covered" >      ZoneNumber = 32;</span>
+   }
 &nbsp;
-    // Special zones for Svalbard
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (Lat &gt;= 72.0 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >Lat &lt; 84.0)</span> {
-<span class="cstat-no" title="statement not covered" >        if (Long &gt;= 0.0 &amp;&amp; Long &lt; 9.0) {</span>
-<span class="cstat-no" title="statement not covered" >            ZoneNumber = 31;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (Long &gt;= 9.0 &amp;&amp; Long &lt; 21.0) {</span>
-<span class="cstat-no" title="statement not covered" >            ZoneNumber = 33;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (Long &gt;= 21.0 &amp;&amp; Long &lt; 33.0) {</span>
-<span class="cstat-no" title="statement not covered" >            ZoneNumber = 35;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (Long &gt;= 33.0 &amp;&amp; Long &lt; 42.0) {</span>
-<span class="cstat-no" title="statement not covered" >            ZoneNumber = 37;</span>
-        }
-    }
+   // Special zones for Svalbard
+   <span class="missing-if-branch" title="if path not taken" >I</span>if (Lat &gt;= 72.0 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >Lat &lt; 84.0)</span> {
+<span class="cstat-no" title="statement not covered" >      if (Long &gt;= 0.0 &amp;&amp; Long &lt; 9.0) {</span>
+<span class="cstat-no" title="statement not covered" >         ZoneNumber = 31;</span>
+      } else <span class="cstat-no" title="statement not covered" >if (Long &gt;= 9.0 &amp;&amp; Long &lt; 21.0) {</span>
+<span class="cstat-no" title="statement not covered" >         ZoneNumber = 33;</span>
+      } else <span class="cstat-no" title="statement not covered" >if (Long &gt;= 21.0 &amp;&amp; Long &lt; 33.0) {</span>
+<span class="cstat-no" title="statement not covered" >         ZoneNumber = 35;</span>
+      } else <span class="cstat-no" title="statement not covered" >if (Long &gt;= 33.0 &amp;&amp; Long &lt; 42.0) {</span>
+<span class="cstat-no" title="statement not covered" >         ZoneNumber = 37;</span>
+      }
+   }
 &nbsp;
-    LongOrigin = (ZoneNumber - 1) * 6 - 180 + 3; //+3 puts origin
-    // in middle of
-    // zone
-    LongOriginRad = this.degToRad(LongOrigin);
+   LongOrigin = (ZoneNumber - 1) * 6 - 180 + 3; //+3 puts origin
+   // in middle of
+   // zone
+   LongOriginRad = this.degToRad(LongOrigin);
 &nbsp;
-    eccPrimeSquared = (ECC_SQUARED) / (1 - ECC_SQUARED);
+   eccPrimeSquared = (ECC_SQUARED) / (1 - ECC_SQUARED);
 &nbsp;
-    N = SEMI_MAJOR_AXIS / Math.sqrt(1 - ECC_SQUARED * Math.sin(LatRad) * Math.sin(LatRad));
-    T = Math.tan(LatRad) * Math.tan(LatRad);
-    C = eccPrimeSquared * Math.cos(LatRad) * Math.cos(LatRad);
-    A = Math.cos(LatRad) * (LongRad - LongOriginRad);
+   N = SEMI_MAJOR_AXIS / Math.sqrt(1 - ECC_SQUARED * Math.sin(LatRad) * Math.sin(LatRad));
+   T = Math.tan(LatRad) * Math.tan(LatRad);
+   C = eccPrimeSquared * Math.cos(LatRad) * Math.cos(LatRad);
+   A = Math.cos(LatRad) * (LongRad - LongOriginRad);
 &nbsp;
-    M = SEMI_MAJOR_AXIS * ((1 - ECC_SQUARED / 4 - 3 * ECC_SQUARED * ECC_SQUARED / 64 - 5 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 256) * LatRad - (3 * ECC_SQUARED / 8 + 3 * ECC_SQUARED * ECC_SQUARED / 32 + 45 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 1024) * Math.sin(2 * LatRad) + (15 * ECC_SQUARED * ECC_SQUARED / 256 + 45 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 1024) * Math.sin(4 * LatRad) - (35 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 3072) * Math.sin(6 * LatRad));
+   M = SEMI_MAJOR_AXIS * ((1 - ECC_SQUARED / 4 - 3 * ECC_SQUARED * ECC_SQUARED / 64 - 5 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 256) * LatRad - (3 * ECC_SQUARED / 8 + 3 * ECC_SQUARED * ECC_SQUARED / 32 + 45 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 1024) * Math.sin(2 * LatRad) + (15 * ECC_SQUARED * ECC_SQUARED / 256 + 45 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 1024) * Math.sin(4 * LatRad) - (35 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 3072) * Math.sin(6 * LatRad));
 &nbsp;
-    var UTMEasting = (k0 * N * (A + (1 - T + C) * A * A * A / 6.0 + (5 - 18 * T + T * T + 72 * C - 58 * eccPrimeSquared) * A * A * A * A * A / 120.0) + 500000.0);
+   var UTMEasting = (k0 * N * (A + (1 - T + C) * A * A * A / 6.0 + (5 - 18 * T + T * T + 72 * C - 58 * eccPrimeSquared) * A * A * A * A * A / 120.0) + 500000.0);
 &nbsp;
-    var UTMNorthing = (k0 * (M + N * Math.tan(LatRad) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A * A * A * A / 24.0 + (61 - 58 * T + T * T + 600 * C - 330 * eccPrimeSquared) * A * A * A * A * A * A / 720.0)));
+   var UTMNorthing = (k0 * (M + N * Math.tan(LatRad) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A * A * A * A / 24.0 + (61 - 58 * T + T * T + 600 * C - 330 * eccPrimeSquared) * A * A * A * A * A * A / 720.0)));
 &nbsp;
-    if (Lat &lt; 0.0) {
-        UTMNorthing += 10000000.0; //10000000 meter offset for
-        // southern hemisphere
-        zoneLetter = 'S';
-    }
+   if (Lat &lt; 0.0) {
+      UTMNorthing += 10000000.0; //10000000 meter offset for
+      // southern hemisphere
+      zoneLetter = 'S';
+   }
 &nbsp;
-    return {"type": "Feature", "geometry": {"type": "Point", "coordinates": [parseFloat(UTMEasting.toFixed(1)), parseFloat(UTMNorthing.toFixed(1))]}, "properties": {"zoneLetter": zoneLetter, "zoneNumber": ZoneNumber}};
+   return {
+      "type": "Feature",
+      "geometry": {
+         "type": "Point",
+         "coordinates": [Number(UTMEasting.toFixed(1)), Number(UTMNorthing.toFixed(1))]
+      },
+      "properties": {
+         "zoneLetter": zoneLetter,
+         "zoneNumber": ZoneNumber
+      }
+   };
 };
 &nbsp;
 /**
@@ -896,180 +1101,99 @@ WGS84Util.LLtoUTM = function(ll) {
  *     Returns null if the conversion failed.
  */
 WGS84Util.UTMtoLL = function(utm) {
-    var UTMNorthing = utm.geometry.coordinates[1];
-    var UTMEasting = utm.geometry.coordinates[0];
-    var zoneLetter = utm.properties.zoneLetter;
-    var zoneNumber = utm.properties.zoneNumber;
-    // check the ZoneNummber is valid
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (zoneNumber &lt; 0 || zoneNumber &gt; 60) {
-<span class="cstat-no" title="statement not covered" >        return null;</span>
-    }
+   var UTMNorthing = utm.geometry.coordinates[1];
+   var UTMEasting = utm.geometry.coordinates[0];
+   var zoneLetter = utm.properties.zoneLetter;
+   var zoneNumber = utm.properties.zoneNumber;
+   // check the ZoneNummber is valid
+   <span class="missing-if-branch" title="if path not taken" >I</span>if (zoneNumber &lt; 0 || zoneNumber &gt; 60) {
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+   }
 &nbsp;
-    var k0 = 0.9996;
-    var eccPrimeSquared;
-    var e1 = (1 - Math.sqrt(1 - ECC_SQUARED)) / (1 + Math.sqrt(1 - ECC_SQUARED));
-    var N1, T1, C1, R1, D, M;
-    var LongOrigin;
-    var mu, phi1Rad;
+   var k0 = 0.9996;
+   var eccPrimeSquared;
+   var e1 = (1 - Math.sqrt(1 - ECC_SQUARED)) / (1 + Math.sqrt(1 - ECC_SQUARED));
+   var N1, T1, C1, R1, D, M;
+   var LongOrigin;
+   var mu, phi1Rad;
 &nbsp;
-    // remove 500,000 meter offset for longitude
-    var x = UTMEasting - 500000.0;
-    var y = UTMNorthing;
+   // remove 500,000 meter offset for longitude
+   var x = UTMEasting - 500000.0;
+   var y = UTMNorthing;
 &nbsp;
-    // We must know somehow if we are in the Northern or Southern
-    // hemisphere, this is the only time we use the letter So even
-    // if the Zone letter isn't exactly correct it should indicate
-    // the hemisphere correctly
-    if (zoneLetter === 'S') {
-        y -= 10000000.0; // remove 10,000,000 meter offset used
-        // for southern hemisphere
-    }
+   // We must know somehow if we are in the Northern or Southern
+   // hemisphere, this is the only time we use the letter So even
+   // if the Zone letter isn't exactly correct it should indicate
+   // the hemisphere correctly
+   if (zoneLetter === 'S') {
+      y -= 10000000.0; // remove 10,000,000 meter offset used
+      // for southern hemisphere
+   }
 &nbsp;
-    // There are 60 zones with zone 1 being at West -180 to -174
-    LongOrigin = (zoneNumber - 1) * 6 - 180 + 3; // +3 puts origin
-    // in middle of
-    // zone
-    eccPrimeSquared = (ECC_SQUARED) / (1 - ECC_SQUARED);
+   // There are 60 zones with zone 1 being at West -180 to -174
+   LongOrigin = (zoneNumber - 1) * 6 - 180 + 3; // +3 puts origin
+   // in middle of
+   // zone
+   eccPrimeSquared = (ECC_SQUARED) / (1 - ECC_SQUARED);
 &nbsp;
-    M = y / k0;
-    mu = M / (SEMI_MAJOR_AXIS * (1 - ECC_SQUARED / 4 - 3 * ECC_SQUARED * ECC_SQUARED / 64 - 5 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 256));
+   M = y / k0;
+   mu = M / (SEMI_MAJOR_AXIS * (1 - ECC_SQUARED / 4 - 3 * ECC_SQUARED * ECC_SQUARED / 64 - 5 * ECC_SQUARED * ECC_SQUARED * ECC_SQUARED / 256));
 &nbsp;
-    phi1Rad = mu + (3 * e1 / 2 - 27 * e1 * e1 * e1 / 32) * Math.sin(2 * mu) + (21 * e1 * e1 / 16 - 55 * e1 * e1 * e1 * e1 / 32) * Math.sin(4 * mu) + (151 * e1 * e1 * e1 / 96) * Math.sin(6 * mu);
-    // double phi1 = ProjMath.radToDeg(phi1Rad);
-    N1 = SEMI_MAJOR_AXIS / Math.sqrt(1 - ECC_SQUARED * Math.sin(phi1Rad) * Math.sin(phi1Rad));
-    T1 = Math.tan(phi1Rad) * Math.tan(phi1Rad);
-    C1 = eccPrimeSquared * Math.cos(phi1Rad) * Math.cos(phi1Rad);
-    R1 = SEMI_MAJOR_AXIS * (1 - ECC_SQUARED) / Math.pow(1 - ECC_SQUARED * Math.sin(phi1Rad) * Math.sin(phi1Rad), 1.5);
-    D = x / (N1 * k0);
+   phi1Rad = mu + (3 * e1 / 2 - 27 * e1 * e1 * e1 / 32) * Math.sin(2 * mu) + (21 * e1 * e1 / 16 - 55 * e1 * e1 * e1 * e1 / 32) * Math.sin(4 * mu) + (151 * e1 * e1 * e1 / 96) * Math.sin(6 * mu);
+   // double phi1 = ProjMath.radToDeg(phi1Rad);
+   N1 = SEMI_MAJOR_AXIS / Math.sqrt(1 - ECC_SQUARED * Math.sin(phi1Rad) * Math.sin(phi1Rad));
+   T1 = Math.tan(phi1Rad) * Math.tan(phi1Rad);
+   C1 = eccPrimeSquared * Math.cos(phi1Rad) * Math.cos(phi1Rad);
+   R1 = SEMI_MAJOR_AXIS * (1 - ECC_SQUARED) / Math.pow(1 - ECC_SQUARED * Math.sin(phi1Rad) * Math.sin(phi1Rad), 1.5);
+   D = x / (N1 * k0);
 &nbsp;
-    var lat = phi1Rad - (N1 * Math.tan(phi1Rad) / R1) * (D * D / 2 - (5 + 3 * T1 + 10 * C1 - 4 * C1 * C1 - 9 * eccPrimeSquared) * D * D * D * D / 24 + (61 + 90 * T1 + 298 * C1 + 45 * T1 * T1 - 252 * eccPrimeSquared - 3 * C1 * C1) * D * D * D * D * D * D / 720);
-    lat = this.radToDeg(lat);
+   var lat = phi1Rad - (N1 * Math.tan(phi1Rad) / R1) * (D * D / 2 - (5 + 3 * T1 + 10 * C1 - 4 * C1 * C1 - 9 * eccPrimeSquared) * D * D * D * D / 24 + (61 + 90 * T1 + 298 * C1 + 45 * T1 * T1 - 252 * eccPrimeSquared - 3 * C1 * C1) * D * D * D * D * D * D / 720);
+   lat = this.radToDeg(lat);
 &nbsp;
-    var lon = (D - (1 + 2 * T1 + C1) * D * D * D / 6 + (5 - 2 * C1 + 28 * T1 - 3 * C1 * C1 + 8 * eccPrimeSquared + 24 * T1 * T1) * D * D * D * D * D / 120) / Math.cos(phi1Rad);
-    lon = LongOrigin + this.radToDeg(lon);
+   var lon = (D - (1 + 2 * T1 + C1) * D * D * D / 6 + (5 - 2 * C1 + 28 * T1 - 3 * C1 * C1 + 8 * eccPrimeSquared + 24 * T1 * T1) * D * D * D * D * D / 120) / Math.cos(phi1Rad);
+   lon = LongOrigin + this.radToDeg(lon);
 &nbsp;
-    var result = { "type": "Point", "coordinates": [] };
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (utm.accuracy) {
-<span class="cstat-no" title="statement not covered" >        var topRight = this.UTMtoLL({</span>
-            northing: utm.northing + utm.accuracy,
-            easting: utm.easting + utm.accuracy,
-            zoneLetter: utm.zoneLetter,
-            zoneNumber: utm.zoneNumber
-        });
-<span class="cstat-no" title="statement not covered" >        result = {</span>
-            top: topRight.lat,
-            right: topRight.lon,
-            bottom: lat,
-            left: lon
-        };
-    } else {
-        result.coordinates[0] = parseFloat(lon.toFixed(8));
-        result.coordinates[1] = parseFloat(lat.toFixed(8));
-    }
+   var result = {
+      "type": "Point",
+      "coordinates": []
+   };
+   <span class="missing-if-branch" title="if path not taken" >I</span>if (utm.accuracy) {
+<span class="cstat-no" title="statement not covered" >      var topRight = this.UTMtoLL({</span>
+         "northing": utm.northing + utm.accuracy,
+         "easting": utm.easting + utm.accuracy,
+         "zoneLetter": utm.zoneLetter,
+         "zoneNumber": utm.zoneNumber
+      });
+<span class="cstat-no" title="statement not covered" >      result = {</span>
+         "top": topRight.lat,
+         "right": topRight.lon,
+         "bottom": lat,
+         "left": lon
+      };
+   } else {
+      result.coordinates[0] = Number(lon.toFixed(10));
+      result.coordinates[1] = Number(lat.toFixed(10));
+   }
 &nbsp;
-    return result;
+   return result;
 };
 &nbsp;</pre></td></tr>
 </table></pre>
-
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 12 2016 17:59:16 GMT-0800 (PST)
 </div>
-<div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon May 25 2015 12:45:50 GMT-0700 (PDT)</div>
 </div>
-
 <script src="../prettify.js"></script>
-
-<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
 <script>
-
-    YUI().use('datatable', function (Y) {
-
-        var formatters = {
-          pct: function (o) {
-              o.className += o.record.get('classes')[o.column.key];
-              try {
-                  return o.value.toFixed(2) + '%';
-              } catch (ex) { return o.value + '%'; }
-          },
-          html: function (o) {
-              o.className += o.record.get('classes')[o.column.key];
-              return o.record.get(o.column.key + '_html');
-          }
-        },
-          defaultFormatter = function (o) {
-              o.className += o.record.get('classes')[o.column.key];
-              return o.value;
-          };
-
-        function getColumns(theadNode) {
-            var colNodes = theadNode.all('tr th'),
-                cols = [],
-                col;
-            colNodes.each(function (colNode) {
-                col = {
-                    key: colNode.getAttribute('data-col'),
-                    label: colNode.get('innerHTML') || ' ',
-                    sortable: !colNode.getAttribute('data-nosort'),
-                    className: colNode.getAttribute('class'),
-                    type: colNode.getAttribute('data-type'),
-                    allowHTML: colNode.getAttribute('data-html') === 'true' || colNode.getAttribute('data-fmt') === 'html'
-                };
-                col.formatter = formatters[colNode.getAttribute('data-fmt')] || defaultFormatter;
-                cols.push(col);
-            });
-            return cols;
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
         }
-
-        function getRowData(trNode, cols) {
-            var tdNodes = trNode.all('td'),
-                    i,
-                    row = { classes: {} },
-                    node,
-                    name;
-            for (i = 0; i < cols.length; i += 1) {
-                name = cols[i].key;
-                node = tdNodes.item(i);
-                row[name] = node.getAttribute('data-value') || node.get('innerHTML');
-                row[name + '_html'] = node.get('innerHTML');
-                row.classes[name] = node.getAttribute('class');
-                //Y.log('Name: ' + name + '; Value: ' + row[name]);
-                if (cols[i].type === 'number') { row[name] = row[name] * 1; }
-            }
-            //Y.log(row);
-            return row;
-        }
-
-        function getData(tbodyNode, cols) {
-            var data = [];
-            tbodyNode.all('tr').each(function (trNode) {
-                data.push(getRowData(trNode, cols));
-            });
-            return data;
-        }
-
-        function replaceTable(node) {
-            if (!node) { return; }
-            var cols = getColumns(node.one('thead')),
-                data = getData(node.one('tbody'), cols),
-                table,
-                parent = node.get('parentNode');
-
-            table = new Y.DataTable({
-                columns: cols,
-                data: data,
-                sortBy: 'file'
-            });
-            parent.set('innerHTML', '');
-            table.render(parent);
-        }
-
-        Y.on('domready', function () {
-            replaceTable(Y.one('div.coverage-summary table'));
-            if (typeof prettyPrint === 'function') {
-                prettyPrint();
-            }
-        });
-    });
+};
 </script>
+<script src="../sorter.js"></script>
 </body>
 </html>

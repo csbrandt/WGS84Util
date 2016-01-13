@@ -8,60 +8,86 @@ Installation
 
 Methods
 --------
-    distanceBetween(coordA, coordB)
-> From: Haversine formula - RW Sinnott, "Virtues of the Haversine",
-> Sky and Telescope, vol 68, no 2, 1984
+    distanceBetween(pointA, pointB [, bearings ])
+> Calculate the distance between a set of GeoJSON points in meters
+>
+> Uses [Vincenty inverse](https://en.wikipedia.org/wiki/Vincenty's_formulae#Inverse_problem) calculation
+>
+> Adapted from http://www.movable-type.co.uk/scripts/latlong-vincenty.html
 >
 > **Parameters**
 >
-> **coordA**:  *object*,  GeoJSON point
+> **pointA**:  *object*,  GeoJSON point
 >
-> **coordB**:  *object*,  GeoJSON point
+> **pointB**:  *object*,  GeoJSON point
+>
+> **bearings**: *boolean*,  optional switch for including the bearings in degrees
 >
 > **Returns**
 >
-> *number*,  the distance from this point to the supplied point, in km
+> *number | object*,  distance from this point to the supplied point
+> in meters or an object that includes distance, initial and final bearings
+>
+> **throws**: *Error*,  if formula failed to converge
 
-    destinationPoint(coordA, bearing, dist)
-> Returns the destination point from this point having traveled the given distance (in m) on the
-> given initial bearing (bearing may vary before destination is reached)
-> see http://williams.best.vwh.net/avform.htm#LL
+    bearingsBetween(pointA, pointB)
+> Convenience function for returning only the initial and final bearings
+> between the given coordinates (forward azimuths at each point)
 >
 > **Parameters**
 >
-> **coordA**:  *object*, GeoJSON point
+> **pointA**:  *object*,  GeoJSON point
 >
-> **bearing**:  *number*,  initial bearing in degrees
->
-> **dist**:  *number*, the distance from the supplied point, in m
+> **pointB**:  *object*,  GeoJSON point
 >
 > **Returns**
 >
-> *object*,  GeoJSON destination point
+> *object*,  forward azimuths (initial and final bearings) at each point in degrees
 
+    destination(point, bearing, distance)
+> Calculate the destination point from this point having travelled the given
+> distance in meters on the given initial bearing
+>
+> Uses [Vincenty direct](https://en.wikipedia.org/wiki/Vincenty's_formulae#Direct_Problem) calculation
+>
+> Adapted from http://www.movable-type.co.uk/scripts/latlong-vincenty.html
+>
+> **Parameters**
+>
+> **point**:  *object*, GeoJSON point
+>
+> **bearing**:  *number*,  initial bearing in degrees from north
+>
+> **distance**:  *number*,  distance along bearing in meters
+>
+> **Returns**
+>
+> *object*,  GeoJSON destination point, finalBearing
+>
+> **throws**: *Error*,  if formula failed to converge
 
     degToRad(deg)
-> Conversion from degrees to radians.
+> Conversion from degrees to radians
 >
 > **Parameters**
 >
-> **deg**:  *number*,  the angle in degrees.
+> **deg**:  *number*,  angle in degrees
 >
 > **Returns**
 >
-> *number*,  the angle in radians.
+> *number*,  angle in radians
 
     radToDeg(rad)
 
-> Conversion from radians to degrees.
+> Conversion from radians to degrees
 >
 > **Parameters**
 >
-> **rad**:  *number*,  the angle in radians.
+> **rad**:  *number*,  angle in radians
 >
 > **Returns**
 >
-> *number*,  the angle in degrees.
+> *number*,  angle in degrees
 
     LLtoUTM(ll)
 
@@ -70,7 +96,7 @@ Methods
 >
 > **Parameters**
 >
-> **ll**:  *object*, GeoJSON point representing the coordinate to be converted.
+> **ll**:  *object*, GeoJSON point representing the coordinate to be converted
 >
 > **Returns**
 >
@@ -79,7 +105,7 @@ Methods
 > accuracy property in digits. Returns null if the conversion failed.
 
     UTMtoLL(utm)
-> Converts UTM coordinates to lat/long, using the WGS84 ellipsoid.
+> Converts UTM coordinates to lat/long, using the WGS84 ellipsoid
 >
 > **Parameters**
 >
@@ -125,7 +151,7 @@ Browser Bundle
 
 ## License
 
-Copyright (c) 2013 Christopher Brandt
+Copyright (c) 2016 Christopher Brandt
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
